@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <form action="https://study.duyiedu.com/api/testpost" method="post">
+     <input type="text" name="info">
+     <input type="submit">
+   </form> -->
+    <button id="bth">fetch测试</button>
+    <button id="postbtn">fatchpost测试</button>
+    <button id="bthr">容错处理</button>
+    <button id="bthhd">测试</button>
+    <form action="" id="form">
+      <input type="text" id="log" />
+      <button id="bbb">测试项目</button>
+    </form>
+
+    <script>
+      // bth.addEventListener("click", () => {
+      //   // const response = await fatch(
+      //   //   "https://duyi.hyfarsight.com/test/study/lyrics"
+      //   // );
+      //   // const result = await response.json();
+      //   // console.log(result);
+      //   fetch("https://duyi.hyfarsight.com/test/study/lyrics")
+      //     .then((response) => response.json())
+      //     .then((response) => console.log(response));
+      // });
+      // 测试接口
+      bthhd.addEventListener("click", async () => {
+        const respon = await fetch("https://study.duyiedu.com");
+        const jk = await respon.json();
+        console.log(jk);
+      });
+
+      // 容错处理
+      bthr.addEventListener("click", async () => {
+        const res = await (async () => {
+          try {
+            const respin = await fetch("https://study.duyiedu.com/api/lyric");
+            return await respin.json();
+          } catch (error) {
+            console.log("kkk" + error);
+          }
+        })();
+        console.log(res);
+        console.log("12");
+      });
+      // get类型的写法
+      bth.addEventListener("click", async () => {
+        const respin = await fetch("https://study.duyiedu.com/api/lyrics");
+        const re = await respin.json();
+        console.log(re);
+        // .then((response) => response.json())
+        // .then((re) => console.log(re));
+      });
+      // post类型的写法
+      postbtn.addEventListener("click", async () => {
+        const respin = await fetch("https://study.duyiedu.com/api/user/login", {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            loginId: "123qwe",
+            loginPwd: "123",
+          }),
+        });
+        const result = await respin.json();
+        console.log(result);
+      });
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const loginId = log.value.trim();
+        if (!loginId) {
+          return;
+        }
+        const respin = await fetch(
+          `https://study.duyiedu.com/api/user/exists?loginId=${loginId}`
+        );
+        const re = await respin.json();
+        console.log(re);
+      });
+    </script>
+  </body>
+</html>

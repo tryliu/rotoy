@@ -22,10 +22,7 @@
       method: "POST",
       params: { loginId, loginPwd },
     });
-    respon &&
-      window.location.replace(
-        "file:///D:/vsckd%E5%B7%A5%E4%BD%9C%E6%96%87%E4%BB%B6%E5%A4%B9/%E7%BD%91%E7%BB%9C%E7%BB%83%E4%B9%A0/index.html"
-      );
+    respon && window.location.replace("./index.html");
   };
   into();
 })();
